@@ -4,6 +4,7 @@ import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class SignUpPage {
@@ -12,7 +13,7 @@ public class SignUpPage {
 	
 	Random rand =new Random();
 	
-	public void signUpPage(WebDriver theDriver) {
+	public  SignUpPage(WebDriver theDriver) {
 		
 		this.driver=theDriver;
 		
@@ -41,28 +42,28 @@ public class SignUpPage {
 	
     
 //Action    
-    public void action(String f, String l, String mail, String phone, String user, String pass, String firstname) throws InterruptedException
-    {
-    	driver.findElement(firstName).sendKeys(f);
-    	driver.findElement(lastName).sendKeys(l);
-    	driver.findElement(email).sendKeys(mail);
-    	driver.findElement(telephone).sendKeys(phone);
-        driver.findElement(fax).sendKeys("55828282");
-        driver.findElement(company).sendKeys("abd");
-        driver.findElement(address1).sendKeys("Irbid - Alrafed");
-        driver.findElement(address2).sendKeys("Irbid - Alrafed");
-        driver.findElement(city).sendKeys("Irbid");
-        
+    public void fillForm(String f, String l, String mail, String phone, String user, String pass) throws InterruptedException {
+        driver.findElement(firstName).sendKeys(f);
+        driver.findElement(lastName).sendKeys(l);
+        driver.findElement(email).sendKeys(mail);
+        driver.findElement(telephone).sendKeys(phone);
+        driver.findElement(fax).sendKeys("9624545755");
+        driver.findElement(company).sendKeys("abc");
+        driver.findElement(address1).sendKeys("Amman tlaaelAli");
+        driver.findElement(address2).sendKeys("Amman ShafaBadran");
+        driver.findElement(city).sendKeys("Amman");
+
         Select countrySelect = new Select(driver.findElement(country));
         int countryCount = driver.findElement(country).findElements(By.tagName("option")).size();
         countrySelect.selectByIndex(rand.nextInt(1,countryCount));
         
+
         Thread.sleep(2000);
-        
+
         Select stateSelect = new Select(driver.findElement(state));
         int stateCount = driver.findElement(state).findElements(By.tagName("option")).size();
-        stateSelect.deselectByIndex(rand.nextInt(1,stateCount));
-		
+        stateSelect.selectByIndex(rand.nextInt(stateCount));
+
         driver.findElement(postcode).sendKeys("3817");
         driver.findElement(loginname).sendKeys(user);
         driver.findElement(password).sendKeys(pass);
@@ -70,7 +71,18 @@ public class SignUpPage {
         driver.findElement(agree).click();
         driver.findElement(continueBtn).click();
     }
+    public void itemSize(boolean needSize) throws InterruptedException {
+    	if (needSize) {
+    		Thread.sleep(2000);
+			System.out.println("This item need size");
+			driver.findElement(By.xpath("//label[@for='option344747']")).click();
 
+		}
+    }
+    	
+		
+	
+    
     public boolean isSignUpSuccess() {
     	return driver.getPageSource().contains("Your Account Has Been Created!");
 		
