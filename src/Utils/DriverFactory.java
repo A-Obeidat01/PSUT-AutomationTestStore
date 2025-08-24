@@ -2,6 +2,7 @@ package Utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 
 public class DriverFactory {
 	private static WebDriver driver;
@@ -9,7 +10,7 @@ public class DriverFactory {
 	public static WebDriver getDriver() 
 	{
 		if (driver== null) {
-			driver = new ChromeDriver();
+			driver = new EdgeDriver();
 			driver.manage().window().maximize();
 		}
 		return driver;

@@ -5,8 +5,10 @@
     <classes>
       <class name="Test.UserTests">
         <methods>
+          <include name="viewingProductDetailsAndAddToCart"/>
           <include name="setup"/>
-          <include name="testAddToCartAndCheckout"/>
+          <include name="testCartAndCheckout"/>
+          <include name="testPayment"/>
         </methods>
       </class> <!-- Test.UserTests -->
     </classes>
